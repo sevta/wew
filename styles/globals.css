@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply capitalize px-8 font-medium active:scale-95 transition duration-200;
+  }
+
+  .btn-secondary {
+    @apply shadow-lg shadow-secondary/50 capitalize;
+  }
+
+  .btn-primary {
+    @apply shadow-lg shadow-primary/50 capitalize;
+  }
+
+  .btn-accent {
+    @apply shadow-lg shadow-accent/50 capitalize;
+  }
+
+  .input {
+    @apply focus:ring-1 focus:ring-black;
+  }
+
+  .select {
+    @apply focus:ring-1 focus:ring-black;
+  }
+
+  .input-error {
+    @apply focus:ring-0;
+  }
+
+  img {
+    @apply w-full h-full object-cover object-center;
+  }
+
+  .card {
+    @apply bg-base-100 shadow-xl shadow-slate-400/20 text-base-content;
+  }
+
+  .title {
+    @apply font-bold tracking-tighter text-2xl;
+  }
+
+  .content {
+    @apply text-base-content/70 leading-relaxed;
+  }
+
+  .link {
+    @apply font-medium text-sm;
+  }
+
+  .container {
+    @apply max-w-6xl px-5 mx-auto relative;
+  }
+
+  .input-file {
+    @apply py-3 text-sm file:top-1/2  file:border-0 file:bg-primary/30 file:font-medium file:px-4 file:py-2 file:mr-3 file:rounded-full file:text-primary file:cursor-pointer;
+  }
+}
