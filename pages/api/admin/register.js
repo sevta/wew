@@ -3,8 +3,8 @@ import Admin from "models/Admin";
 import bcrypt from "bcrypt";
 
 /**
-* gajadi pake
-*/
+ * TODO: hapus gajadi pake
+ */
 export default async function handler(req, res) {
   await dbConnect();
   if (req.method === "POST") {

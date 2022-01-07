@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from "components/Layout";
-import ShowCases from "components/ShowCases";
+import Layout from "components/layout";
+import ShowCases from "components/showcases";
+import Template from "models/Template";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { BsInstagram } from "react-icons/bs";
 
-export default function Homepage() {
+export default function Homepage({ templates }) {
   const { status, error } = useSession();
   const router = useRouter();
 
@@ -20,7 +21,7 @@ export default function Homepage() {
   return (
     <Layout>
       <section className="section-1" style={{}}>
-        <div className="container pt-10 pb-40">
+        <div className="container pt-16 pb-40">
           <div className="flex space-x-10">
             <img
               className="w-80 rounded-box aspect-square"
@@ -47,20 +48,35 @@ export default function Homepage() {
       </section>
       <section className="section-2">
         <div className="container">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="title">Template</div>
+          <div className="grid mt-5 grid-cols-3 gap-8">
             {[
-              Array(8)
-                .fill("")
-                .map((_, index) => (
-                  <ShowCases
-                    key={index}
-                    OnLihatContohClick={() => OnLihatContohClick(index)}
-                  />
-                )),
+              templates.map((template, index) => (
+                <ShowCases
+                  key={index}
+                  index={index}
+                  name={template.name}
+                  price={template.price}
+                  OnLihatContohClick={() => OnLihatContohClick(index)}
+                />
+              )),
             ]}
           </div>
         </div>
       </section>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  /**
+   * TODO: sort by asc
+   */
+  const templates = await Template.find().exec();
+
+  return {
+    props: {
+      templates: JSON.parse(JSON.stringify(templates)),
+    },
+  };
 }

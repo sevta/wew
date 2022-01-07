@@ -1,4 +1,4 @@
-import TableUsers from "./TableUsers";
+import TableUsers from "./table-users";
 
 export default function TableCard() {
   return (

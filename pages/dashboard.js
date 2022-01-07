@@ -1,7 +1,7 @@
-import BrideCard from "components/dashboard/BrideCard";
-import EditorCard from "components/dashboard/EditorCard";
-import TemplateCard from "components/dashboard/TemplateCard";
-import LayoutDashboard from "components/LayoutDashboard";
+import BrideCard from "components/dashboard/bride-card";
+import EditorCard from "components/dashboard/editor-card";
+import TemplateCard from "components/dashboard/template-card";
+import LayoutDashboard from "components/layout-dashboard";
 import dbConnect from "lib/dbConnect";
 import Bride from "models/Bride";
 
@@ -11,8 +11,8 @@ export default function Dashboard({ data }) {
   return (
     <LayoutDashboard>
       <div className="space-y-6">
-        <BrideCard data={data} />
         <TemplateCard />
+        <BrideCard data={data} />
         <EditorCard />
       </div>
     </LayoutDashboard>

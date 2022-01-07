@@ -1,4 +1,4 @@
-import LayoutTemplate from "components/LayoutTemplate";
+import LayoutTemplate from "components/layout-template";
 import Tmp1 from "components/templates/tmp1";
 import Tmp2 from "components/templates/tmp2";
 import { useRouter } from "next/router";

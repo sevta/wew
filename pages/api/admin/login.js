@@ -1,9 +1,13 @@
 import dbConnect from "lib/dbConnect";
 import Admin from "models/Admin";
 import bcrypt from "bcrypt";
+import { withSessionRoute } from "lib/withSession";
 
-export default async function handler(req, res) {
+export default withSessionRoute(handler);
+
+async function handler(req, res) {
   await dbConnect();
+
   if (req.method === "POST") {
     const { email, password } = req.body;
 
@@ -11,14 +15,20 @@ export default async function handler(req, res) {
 
     if (admin) {
       const compare = bcrypt.compareSync(password, admin.password);
-      console.log("compare", compare);
+
       if (compare) {
-        res.send({ msg: "ok auth" });
+        console.log({ admin });
+        req.session.user = {
+          email: admin.email,
+        };
+        await req.session.save();
+        res.status(200).json({ message: "ok", admin });
       } else {
+        res.status(500).json({ message: "password not match!" });
         res.send({ msg: "failed" });
       }
     } else {
-      res.send({ msg: "not found" });
+      res.status(500).json({ message: "user not found!" });
     }
   }
 }

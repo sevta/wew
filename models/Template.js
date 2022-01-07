@@ -10,6 +10,11 @@ const TemplateSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    status: {
+      type: String,
+      enum: ["COMMING-SOON", "RELEASED"],
+      default: "COMMING-SOON",
+    },
   },
   {
     timestamps: true,

@@ -1,7 +1,6 @@
-import Layout from "components/Layout";
+import Layout from "components/layout";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function LoginPage() {
   const { data: session, status } = useSession();

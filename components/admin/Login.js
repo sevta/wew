@@ -1,16 +1,27 @@
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import toast from "react-hot-toast";
+
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
 
-  async function handleLogin({ email, password }) {
-    const resp = await axios.post("/api/admin/login", {
-      email,
-      password,
-    });
+  const router = useRouter();
 
-    console.log(resp);
+  async function handleLogin({ email, password }) {
+    try {
+      const resp = await axios.post("/api/admin/login", {
+        email,
+        password,
+      });
+
+      console.log(resp);
+      if (resp) router.replace("/admin");
+    } catch (error) {
+      console.error(error.response);
+      toast.error(error.response.data.message);
+    }
   }
 
   return (

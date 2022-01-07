@@ -1,4 +1,5 @@
 import NextNprogress from "nextjs-progressbar";
+import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 
 import "@fontsource/inter";
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <>
       <SessionProvider session={session}>
         <NextNprogress />
+        <Toaster />
         <Component {...pageProps} />
       </SessionProvider>
     </>

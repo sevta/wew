@@ -9,7 +9,7 @@ export default function LayoutTemplate({ children }) {
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
-    // audio.play();
+    audio.play();
     audio.addEventListener("ended", () => setPlay(false));
     return () => {
       audio.pause();
